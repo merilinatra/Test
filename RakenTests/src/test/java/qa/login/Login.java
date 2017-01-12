@@ -9,22 +9,23 @@ import static com.codeborne.selenide.Selenide.screenshot;
 public class Login {
     @Test
     public void login() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "D:/automation/geckodriver.exe");
-        Configuration.reportsFolder = "D:/automation/screen";
+        System.setProperty("webdriver.gecko.driver", "C:/automation/geckodriver.exe");
+        Configuration.reportsFolder = "C:/automation/screen";
 
         loginUse();
+
+        $(By.id("query")).setValue("test");
+        screenshot("dashboard");
     }
 
-    public void loginUse(){
+    public static void loginUse(){
         open("http://qa.rakenapp.com");
 
         $(By.name("username")).setValue("anastasia.lyutarevich@neklo.com");
         $(By.name("password")).setValue("123456");
         $(By.xpath(".//input[@class='btn btn-warning']")).click();
 
+        //close banner
         $(By.xpath(".//button[@class='close']")).click();
-
-        $(By.id("query")).setValue("test");
-        screenshot("dashboard");
     }
 }
