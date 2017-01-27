@@ -18,8 +18,8 @@ public class Login {
         screenshot("dashboard");
     }
 
-    public static void loginUse(){
-        open("http://qa.rakenapp.com");
+    public static void loginUse() throws InterruptedException {
+        open("https://qa.rakenapp.com");
 
         $(By.name("username")).setValue("anastasia.lyutarevich@neklo.com");
         $(By.name("password")).setValue("123456");
@@ -27,5 +27,7 @@ public class Login {
 
         //close banner
         $(By.xpath(".//button[@class='close']")).click();
+        $(By.id("query")).click();
+
     }
 }

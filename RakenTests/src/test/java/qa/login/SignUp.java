@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selenide.screenshot;
 public class SignUp {
     @Test
     public void signUp() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "D:/automation/geckodriver.exe");
-        Configuration.reportsFolder = "D:/automation/screen";
+        System.setProperty("webdriver.gecko.driver", "C:/automation/geckodriver.exe");
+        Configuration.reportsFolder = "C:/automation/screen";
 
         open("http://qa.rakenapp.com/login");
 

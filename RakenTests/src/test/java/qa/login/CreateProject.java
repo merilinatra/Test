@@ -1,34 +1,33 @@
 package qa.login;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import static com.codeborne.selenide.Selenide.*;
-import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.screenshot;
 
 public class CreateProject {
     @Test
-    public void login() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "D:/automation/geckodriver.exe");
+    public void createProject() throws InterruptedException {
+        System.setProperty("webdriver.gecko.driver", "C:/automation/geckodriver.exe");
+        Configuration.reportsFolder = "C:/automation/screen";
 
-        Configuration.reportsFolder = "D:/automation/screen";
+        Login.loginUse();
+        addNewProject();
 
-        open("http://qa.rakenapp.com");
+        $(By.className("modal-title")).exists();
+        screenshot("project");
+    }
 
-        $(By.name("username")).setValue("anastasia.lyutarevich@neklo.com");
-        $(By.name("password")).setValue("123456");
-        $(By.xpath(".//input[@class='btn btn-warning']")).click();
-        $(By.xpath(".//button[@class='close']")).click();
-
+    public static void addNewProject (){
+        //open projects tab
         $(By.xpath(".//a[@id='projects-tab-link']")).click();
-
+        $(By.xpath(".//a[@id='projects-tab-link']")).click();
         $(By.xpath("//button[@class='btn btn-success']")).click();
 
         $(By.id("name")).setValue(String.format("Project %d", System.currentTimeMillis()));
         $(By.xpath(".//input[@type='submit']")).click();
-
-        $(By.className("modal-title")).exists();
-        screenshot("project");
+        $(By.xpath(".//button[@class='bootbox-close-button close']")).click();
     }
 
 }
