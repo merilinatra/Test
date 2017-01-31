@@ -28,6 +28,12 @@ public class CreateProject {
         $(By.id("name")).setValue(String.format("Project %d", System.currentTimeMillis()));
         $(By.xpath(".//input[@type='submit']")).click();
         $(By.xpath(".//button[@class='bootbox-close-button close']")).click();
+
+        $(By.id("projectNo")).setValue("Number");
+        $(By.id("submitBtn")).click();
+        //херня, по клику не работает, а так ок. надо запомнить
+        $(By.cssSelector("a.btn.btn-default")).pressEnter();
+
     }
 
 }

@@ -14,7 +14,7 @@ public class Login {
 
         loginUse();
 
-        $(By.id("query")).setValue("test");
+
         screenshot("dashboard");
     }
 
@@ -28,6 +28,7 @@ public class Login {
         //close banner
         $(By.xpath(".//button[@class='close']")).click();
         $(By.id("query")).click();
+        $(By.id("query")).setValue("test");
 
     }
 }

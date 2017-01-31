@@ -19,12 +19,6 @@ public class InviteNewSC {
     }
 
     public static void addNewSC () throws InterruptedException {
-        $(By.id("projectNo")).setValue("Number");
-        $(By.id("submitBtn")).click();
-
-
-        //херня, по клику не работает, а так ок. надо запомнить
-        $(By.cssSelector("a.btn.btn-default")).pressEnter();
         $(By.id("addProjectMembers")).click();
 
         $(By.xpath("//img[@src='/images/collaborator_image.png']")).click();
