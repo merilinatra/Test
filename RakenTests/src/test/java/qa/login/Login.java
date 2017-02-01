@@ -12,17 +12,20 @@ public class Login {
         System.setProperty("webdriver.gecko.driver", "C:/automation/geckodriver.exe");
         Configuration.reportsFolder = "C:/automation/screen";
 
-        loginUse();
+        String name, password;
+        name = "anastasia.lyutarevich@neklo.com";
+        password = "123456";
 
+        login(name, password);
 
         screenshot("dashboard");
     }
 
-    public static void loginUse() throws InterruptedException {
+    public static void login(String name, String password) throws InterruptedException {
         open("https://qa.rakenapp.com");
 
-        $(By.name("username")).setValue("anastasia.lyutarevich@neklo.com");
-        $(By.name("password")).setValue("123456");
+        $(By.name("username")).setValue(name);
+        $(By.name("password")).setValue(password);
         $(By.xpath(".//input[@class='btn btn-warning']")).click();
 
         //close banner
@@ -31,4 +34,5 @@ public class Login {
         $(By.id("query")).setValue("test");
 
     }
+
 }

@@ -1,5 +1,6 @@
 package qa.login;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -12,13 +13,17 @@ public class InviteNewSC {
         System.setProperty("webdriver.gecko.driver", "C:/automation/geckodriver.exe");
         Configuration.reportsFolder = "C:/automation/screen";
 
-        Login.loginUse();
+        String name, password;
+        name = "anastasia.lyutarevich@neklo.com";
+        password = "123456";
+        Login.login(name, password);
+
         CreateProject.addNewProject();
-        addNewSC();
+        System.out.print(addNewSC());
         screenshot("sc");
     }
 
-    public static void addNewSC () throws InterruptedException {
+    public static String addNewSC () throws InterruptedException {
         $(By.id("addProjectMembers")).click();
 
         $(By.xpath("//img[@src='/images/collaborator_image.png']")).click();
@@ -28,10 +33,12 @@ public class InviteNewSC {
 
 
         Configuration.timeout=8000;
-        $(By.xpath("//input[@id='email-input-0']")).shouldBe().sendKeys(String.format("anastasia.lyutarevich+sc%d@neklo.co",
-                System.currentTimeMillis()));
+        String email=String.format("anastasia.lyutarevich+sc%d@neklo.co",
+                System.currentTimeMillis());
+        $(By.xpath("//input[@id='email-input-0']")).shouldBe().sendKeys(email);
         $(By.xpath("//input[@id='email-input-0']")).pressEnter();
         $(By.xpath("//input[@id='email-input-0']")).sendKeys("m");
+
         $(By.xpath("//input[@id='name-input-0']")).sendKeys("Test S");
         $(By.xpath("//input[@id='name-input-0']")).pressEnter();
         $(By.xpath("//input[@id='name-input-0']")).sendKeys("C");
@@ -39,6 +46,10 @@ public class InviteNewSC {
                 System.currentTimeMillis()));
 
         $(By.xpath("//input[@id='submit']")).click();
+
+        $(By.cssSelector("#invite-success-modal > div.modal-dialog")).shouldBe(Condition.visible);
+        $(By.cssSelector("#invite-success-modal > div.modal-dialog > div > div.modal-footer > button")).click();
+        return email+"m";
         }
 
 }
